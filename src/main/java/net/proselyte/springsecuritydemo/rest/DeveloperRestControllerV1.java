@@ -1,7 +1,6 @@
 package net.proselyte.springsecuritydemo.rest;
 
 import net.proselyte.springsecuritydemo.model.Developer;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class DeveloperRestControllerV1 {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('developers:read')")
+//    @PreAuthorize("hasAnyAuthority('developers:read')")
     public Developer getById(@PathVariable Long id) {
         return DEVELOPRES.stream().filter(developer -> developer.getId().equals(id))
                 .findFirst()
@@ -32,14 +31,14 @@ public class DeveloperRestControllerV1 {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('developers:write')")
+//    @PreAuthorize("hasAnyAuthority('developers:write')")
     public Developer create(@RequestBody Developer developer) {
         this.DEVELOPRES.add(developer);
         return developer;
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('developers:write')")
+//    @PreAuthorize("hasAnyAuthority('developers:write')")
     public void deleteById(@PathVariable Long id) {
         this.DEVELOPRES.removeIf(developer -> developer.getId().equals(id));
     }
