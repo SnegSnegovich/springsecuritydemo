@@ -1,6 +1,7 @@
 package net.proselyte.springsecuritydemo.rest;
 
 import net.proselyte.springsecuritydemo.model.Developer;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/v1/developers")
+@PreAuthorize("hasAnyAuthority('developers:write')")
 public class DeveloperRestControllerV1 {
     private List<Developer> DEVELOPRES = Stream.of(
             new Developer(1L, "Ivan", "Ivanov"),
@@ -23,7 +25,7 @@ public class DeveloperRestControllerV1 {
     }
 
     @GetMapping("/{id}")
-//    @PreAuthorize("hasAnyAuthority('developers:read')")
+//    @PreAuthorize("hasAnyAuthority('developers:write')")
     public Developer getById(@PathVariable Long id) {
         return DEVELOPRES.stream().filter(developer -> developer.getId().equals(id))
                 .findFirst()

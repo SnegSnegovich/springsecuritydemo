@@ -9,13 +9,16 @@
         <h2 class="form-signin-heading">Login</h2>
         <p>
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Email" required>
         </p>
         <p>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         </p>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+        <p>Click <a th:href="@{/auth/registration}">here</a> for registration</p>
+
     </form>
 </div>
 </body>
